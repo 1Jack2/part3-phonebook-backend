@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
-const persons = [
+let persons = [
     {
         "id": 1,
         "name": "Arto Hellas",
@@ -53,21 +53,21 @@ app.get('/api/persons/:id', (request, response) => {
         response.status(404).end()
     }
 })
-//
-// app.delete('/api/notes/:id', (request, response) => {
-//     const id = Number(request.params.id)
-//     notes = notes.filter(note => note.id !== id)
-//
-//     response.status(204).end()
-// })
-//
+
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    persons = persons.filter(person => person.id !== id)
+
+    response.status(204).end()
+})
+
 // const generateId = () => {
 //     const maxId = notes.length > 0
 //     ? Math.max(...notes.map(n => n.id))
 //     : 0
 //     return maxId + 1
 // }
-//
+
 // app.post('/api/notes', (request, response) => {
 //
 //     const body = request.body
