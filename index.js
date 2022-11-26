@@ -40,21 +40,19 @@ app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
 
-// app.get('/api/notes/:id', (request, response) => {
-//     const id = Number(request.params.id)
-//     console.log(id);
-//     const note = notes.find(note => {
-//         console.log(note.id, typeof note.id, id, typeof id, note.id === id);
-//         return note.id === id
-//     })
-//     if (note) {
-//         response.json(note)
-//     } else {
-//         response.status(404).end
-//     }
-//     console.log(note);
-//     response.json(note)
-// })
+app.get('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    const person = persons.find(person => {
+        console.log(person.id, typeof person.id, id, typeof id, person.id === id);
+        return person.id === id
+    })
+    if (person) {
+        response.json(person)
+    } else {
+        console.log("missing")
+        response.status(404).end()
+    }
+})
 //
 // app.delete('/api/notes/:id', (request, response) => {
 //     const id = Number(request.params.id)
